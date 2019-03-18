@@ -8,12 +8,12 @@ if(!isset($_POST["uploadBtn"])){
     exit();
 } 
 
-$videoUploadData = new VideoUploadData($_FILES["fileInput"]
-    , $_POST["titleInput"]
-    , $_POST["descriptionInput"]
-    , $_POST["privacyInput"]
-    , $_POST["categoryInput"]
-    , $userLoggedInObj->getUsername());
+$videoUploadData = new VideoUploadData($_FILES["fileInput"],
+    $_POST["titleInput"],
+    $_POST["descriptionInput"],
+    $_POST["privacyInput"],
+    $_POST["categoryInput"],
+    $userLoggedInObj->getUsername());
 
 $videoProcessor = new VideoProcessor($con);
 $wasSuccessful = $videoProcessor->upload($videoUploadData);

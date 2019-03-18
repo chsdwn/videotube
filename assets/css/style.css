@@ -105,9 +105,8 @@ a:hover{
 	position: fixed;
 	top: 0;
 	bottom: 0;
-	display: flex;
+	display: none;
     flex-direction: column;
-    display: none;
 }
 
 #mainSectionContainer{
@@ -222,4 +221,64 @@ a:hover{
     font-size: 14px;
     font-weight: 400;
     text-align: center;
+}
+
+/* watch.php */
+.watchLeftColumn{
+    flex: 1;
+}
+
+.watchLeftColumn .videoPlayer{
+    width: 100%;
+}
+
+.watchLeftColumn .videoInfo{
+    width: 100%;
+    padding: 20px 0 8px 0;
+}
+
+.watchLeftColumn .videoInfo h1{
+    display: block;
+    overflow: hidden;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.watchLeftColumn .videoInfo .bottomSection{
+    display: flex;
+}
+
+.watchLeftColumn .videoInfo .bottomSection .viewCount{
+    color: rgba(17, 17, 17, 0.6);
+    font-size: 16px;
+    flex: 1;
+}
+
+.watchLeftColumn .videoInfo .bottomSection .controls{
+    flex: 1;
+    text-align: right;
+}
+
+.watchLeftColumn .videoInfo .bottomSection .controls button{
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    color: rgba(17,17,17,0.6);
+    font-weight: 500;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.watchLeftColumn .videoInfo .bottomSection .controls button img{
+    height: 20px;
+    width: 20px;
+    margin: 4px 8px 8px 8px;
+}
+
+.suggestions{
+    max-width: 425px;
+    flex-grow: 1;
+    height: 100%;
+    padding-left: 24px;
 }
