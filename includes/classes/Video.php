@@ -22,7 +22,7 @@ class Video{
     }
 
     public function getUploadedBy(){
-        return $this->sqlData["id"];
+        return $this->sqlData["uploadedBy"];
     }
 
     public function getTitle(){
@@ -46,7 +46,8 @@ class Video{
     }
 
     public function getUploadDate(){
-        return $this->sqlData["uploadDate"];
+        $date = $this->sqlData["uploadDate"];
+        return date("M j, Y", strtotime($date));
     }
 
     public function getViews(){

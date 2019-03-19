@@ -80,7 +80,7 @@ a:hover{
     border-bottom-left-radius: 2px;
     border-right: none;
     height: 32px;
-    box-shadow: #eee 0px 1px 2px 0px inset;
+    box-shadow: #eee 0 1px 2px 0 inset;
 }
 
 #mastHeadContainer .searchBarContainer .searchButton{
@@ -274,6 +274,87 @@ a:hover{
     height: 20px;
     width: 20px;
     margin: 4px 8px 8px 8px;
+}
+
+.watchLeftColumn .secondaryInfo{
+    border-bottom: 1px solid #dedede;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.watchLeftColumn .secondaryInfo .topRow{
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.watchLeftColumn .secondaryInfo .topRow a .profilePicture{
+    height: 100%;
+}
+
+.watchLeftColumn .secondaryInfo .topRow a .profilePicture{
+    margin-right: 16px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.watchLeftColumn .secondaryInfo .topRow .uploadInfo{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.watchLeftColumn .secondaryInfo .topRow .uploadInfo .owner a{
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+}
+
+.watchLeftColumn .secondaryInfo .topRow .uploadInfo .date{
+    color: rgba(17, 17, 17, 0.6);
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.watchLeftColumn .secondaryInfo .topRow .editVideoButtonContainer,
+.watchLeftColumn .secondaryInfo .topRow .subscribeButtonContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.watchLeftColumn .secondaryInfo .topRow .editVideoButtonContainer .edit{
+    background-color: #2692e6;
+    color: #fff;
+}
+
+.watchLeftColumn .secondaryInfo .topRow .subscribeButtonContainer .subscribe{
+    background-color: #f00;
+    color: #fff;
+}
+
+.watchLeftColumn .secondaryInfo .topRow .subscribeButtonContainer .unsubscribe{
+    background-color: #eee;
+    color: rgba(17,  17, 17, 0.6);
+}
+
+.watchLeftColumn .secondaryInfo .topRow .editVideoButtonContainer .button,
+.watchLeftColumn .secondaryInfo .topRow .subscribeButtonContainer .button{
+    padding: 6px 15px;
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 2px;
+    border: none;
+    font-size: 14px;
+}
+
+.watchLeftColumn .secondaryInfo .descriptionContainer{
+    margin-left: 64px;
+    max-width: 615px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
 }
 
 .suggestions{
