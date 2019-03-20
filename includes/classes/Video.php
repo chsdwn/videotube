@@ -69,6 +69,16 @@ class Video{
         return $data["count"];
     }
 
+    public function getNumberOfComments(){
+        $id = $this->getId();
+
+        $query = $this->con->prepare("SELECT * FROM comments WHERE videoId=:videoId");
+        $query->bindParam(":videoId", $id);
+        $query->execute();
+
+        return $query->rowCount();
+    }
+
     public function getDislikes(){
         $videoId = $this->getId();
 

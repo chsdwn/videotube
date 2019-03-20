@@ -1,5 +1,6 @@
 <?php
 require_once("includes/header.php");
+require_once("includes/classes/CommentSection.php");
 require_once("includes/classes/VideoPlayer.php");
 require_once("includes/classes/VideoInfoSection.php");
 
@@ -12,6 +13,7 @@ $video = new Video($con, $_GET["id"], $userLoggedInObj);
 $video->incrementViews();
 ?>
 
+<script src="assets/js/commentActions.js"></script>
 <script src="assets/js/videoPlayerActions.js"></script>
 
 <div class="watchLeftColumn">
@@ -21,6 +23,9 @@ $video->incrementViews();
 
         $videoInfo = new VideoInfoSection($con, $video, $userLoggedInObj);
         echo $videoInfo->create();
+
+        $commentSection = new CommentSection($con, $video, $userLoggedInObj);
+        echo $commentSection->create();
     ?>
 </div>
 

@@ -287,11 +287,11 @@ a:hover{
     margin-bottom: 12px;
 }
 
-.watchLeftColumn .secondaryInfo .topRow a .profilePicture{
+.profilePicture{
     height: 100%;
 }
 
-.watchLeftColumn .secondaryInfo .topRow a .profilePicture{
+.profilePicture{
     margin-right: 16px;
     width: 48px;
     height: 48px;
@@ -355,6 +355,123 @@ a:hover{
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;
+}
+
+.watchLeftColumn .commentSection .header{
+    margin-top: 24px;
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+.watchLeftColumn .commentSection .header .commentForm,
+.itemContainer .commentForm{
+    display: flex;
+}
+
+.watchLeftColumn .commentSection .header .commentForm .profilePicture,
+.watchLeftColumn .commentSection .comment .profilePicture,
+.watchLeftColumn .commentSection .comments .itemContainer .commentForm .profilePicture{
+    margin-right: 16px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.watchLeftColumn .commentSection .header .commentForm textarea,
+.itemContainer .commentForm textarea{
+    flex: 1;
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+    color: #111;
+    resize: none;
+}
+
+.itemContainer .commentForm textarea{
+    height: 30px;
+
+}
+
+.watchLeftColumn .commentSection .header .commentForm .postComment,
+.watchLeftColumn .commentSection .comments .itemContainer .commentForm .postComment,
+.watchLeftColumn .commentSection .comments .itemContainer .commentForm .cancelComment{
+    height: 36px;
+    background-color: #2692e6;
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    padding: 0 15px;
+    border-radius: 2px;
+}
+
+.watchLeftColumn .commentSection .comments .itemContainer{
+    margin-bottom: 16px;
+}
+
+.watchLeftColumn .commentSection .comments .itemContainer .comment{
+    display: flex;
+}
+
+.watchLeftColumn .commentSection .comments .itemContainer .comment .mainContainer .commentHeader{
+    margin-bottom: 2px;
+}
+
+.watchLeftColumn .commentSection .comments .itemContainer .comment .mainContainer .commentHeader .username{
+    margin-right: 8px;
+    color: #111;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.watchLeftColumn .commentSection .comments .itemContainer .controls{
+    margin-left: 64px;
+}
+
+.watchLeftColumn .commentSection .comments .itemContainer .controls button,
+.watchLeftColumn .commentSection .comments .itemContainer .controls .likesCount{
+    height: 32px;
+    background-color: transparent;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(17,17,17,0.6);
+}
+
+.watchLeftColumn .commentSection .comments .itemContainer .controls button{
+    cursor: pointer;
+}
+
+.watchLeftColumn .commentSection .comments .itemContainer .controls button img{
+    height: 16px;
+}
+
+.watchLeftColumn .commentSection .comments .itemContainer .controls .likesCount{
+    margin: 0 5px;
+}
+
+.watchLeftColumn .commentSection .comments .itemContainer .commentForm .profilePicture{
+    width: 30px;
+    height: 30px;
+}
+
+.watchLeftColumn .commentSection .comments .itemContainer .commentForm .cancelComment{
+    background-color: transparent;
+    color: rgba(17,17,17,0.6);
+}
+
+.watchLeftColumn .commentSection .comments .itemContainer .commentForm .cancelComment:hover{
+    color: #000;
+}
+
+.watchLeftColumn .commentSection .header .commentCount{
+    margin-bottom: 24px;
+}
+
+.watchLeftColumn .commentSection .comments .itemContainer .comment .mainContainer .body{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
 }
 
 .suggestions{
