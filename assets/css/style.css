@@ -8,6 +8,10 @@ a:hover{
     text-decoration: none;
 }
 
+.hidden{
+    display: none !important;
+}
+
 #pageContainer {
     width: 100%;
     height: 100%;
@@ -123,6 +127,8 @@ a:hover{
     padding: 10px 30px;
     display: flex;
     flex: 1;
+    background-color: #fefefe;
+    box-sizing: border-box;
 }
 
 /* upload.php */
@@ -464,8 +470,26 @@ a:hover{
     color: #000;
 }
 
+.watchLeftColumn .commentSection .comments .itemContainer .repliesSection{
+    padding-left: 64px;
+    margin-top: 16px;
+}
+
+.watchLeftColumn .commentSection .comments .itemContainer .viewReplies{
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+
 .watchLeftColumn .commentSection .header .commentCount{
     margin-bottom: 24px;
+}
+
+.watchLeftColumn .commentSection .comments .itemContainer .comment .mainContainer .commentHeader .timestamp{
+    color: #888;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
 }
 
 .watchLeftColumn .commentSection .comments .itemContainer .comment .mainContainer .body{

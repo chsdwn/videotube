@@ -24,13 +24,25 @@ class Comment{
     }
 
     public function create(){
+        $id = $this->sqlData["id"];
+        $videoId = $this->getVideoId();
         $body = $this->sqlData["body"];
         $postedBy = $this->sqlData["postedBy"];
         $profileButton = ButtonProvider::createUserProfileButton($this->con, $postedBy);
-        $timespan = "";
+        $timespan = $this->timeElapsedString($this->sqlData["datePosted"]);
 
         $commentControlsObj = new CommentControls($this->con, $this, $this->userLoggedInObj);
         $commentControl = $commentControlsObj->create();
+
+        $numResponses = $this->getNumberOfReplies();
+
+        if($numResponses > 0){
+            $viewRepliesText = "<span class='repliesSection viewReplies' onclick='getReplies(this, $id, $videoId)'>
+                                    View all $numResponses replies.
+                                </span>";
+        } else{
+            $viewRepliesText = "<div class='repliesSection'></div>";
+        }
 
         return "<div class='itemContainer'>
                     <div class='comment'>
@@ -53,6 +65,7 @@ class Comment{
                     </div>
                     
                     $commentControl
+                    $viewRepliesText
                     
                 </div>";
     }
@@ -85,6 +98,119 @@ class Comment{
         $numDislikes = $data["count"];
 
         return $numLikes - $numDislikes;
+    }
+
+    private function getNumberOfReplies(){
+        $id = $this->sqlData["id"];
+
+        $query = $this->con->prepare("SELECT count(*) FROM comments WHERE responseTo=:responseTo");
+        $query->bindParam(":responseTo", $id);
+        $query->execute();
+        return $query->fetchColumn();
+    }
+
+    public function getReplies(){
+        $id = $this->getId();
+        $videoId = $this->getVideoId();
+
+        $query = $this->con->prepare("SELECT * FROM comments WHERE responseTo=:commentId ORDER BY datePosted ASC");
+        $query->bindParam(":commentId", $id);
+        $query->execute();
+
+        $comments = "";
+
+        while($row = $query->fetch(PDO::FETCH_ASSOC)){
+            $comment = new Comment($this->con, $row, $this->userLoggedInObj, $videoId);
+            $comments .= $comment->create();
+        }
+
+        return $comments;
+    }
+
+    public function like(){
+        $id = $this->getId();
+        $username = $this->userLoggedInObj->getUsername();
+
+        if($this->wasLikedBy()){
+            $query = $this->con->prepare("DELETE FROM likes WHERE username=:username AND commentId=:commentId");
+            $query->bindParam(":username", $username);
+            $query->bindParam(":commentId", $id);
+            $query->execute();
+
+            return -1;
+        } else{
+            // Deletes dislike
+            $query = $this->con->prepare("DELETE FROM dislikes WHERE username=:username AND commentId=:commentId");
+            $query->bindParam(":username", $username);
+            $query->bindParam(":commentId", $id);
+            $query->execute();
+            $count = $query->rowCount();
+
+            $query = $this->con->prepare("INSERT INTO likes(username, commentId) VALUES(:username, :commentId)");
+            $query->bindParam(":username", $username);
+            $query->bindParam(":commentId", $id);
+            $query->execute();
+
+            return 1 + $count;
+        }
+    }
+
+    public function dislike(){
+        $id = $this->getId();
+        $username = $this->userLoggedInObj->getUsername();
+
+        if($this->wasDislikedBy()){
+            $query = $this->con->prepare("DELETE FROM dislikes WHERE username=:username AND commentId=:commentId");
+            $query->bindParam(":username", $username);
+            $query->bindParam(":commentId", $id);
+            $query->execute();
+
+            return 1;
+        } else{
+            // Deletes dislike
+            $query = $this->con->prepare("DELETE FROM likes WHERE username=:username AND commentId=:commentId");
+            $query->bindParam(":username", $username);
+            $query->bindParam(":commentId", $id);
+            $query->execute();
+            $count = $query->rowCount();
+
+            $query = $this->con->prepare("INSERT INTO dislikes(username, commentId) VALUES(:username, :commentId)");
+            $query->bindParam(":username", $username);
+            $query->bindParam(":commentId", $id);
+            $query->execute();
+
+           return -1 - $count;
+        }
+    }
+
+    private function timeElapsedString($datetime, $full = false){
+        $now = new DateTime;
+        $ago = new DateTime($datetime);
+        $diff = $now->diff($ago);
+
+        $diff->w = floor($diff->d / 7);
+        $diff->d -= $diff->w * 7;
+
+        $string = array(
+            'y' => 'year',
+            'm' => 'month',
+            'w' => 'weak',
+            'd' => 'day',
+            'h' => 'hour',
+            'i' => 'minute',
+            's' => 'second'
+        );
+
+        foreach($string as $k => &$v){
+            if($diff->$k){
+                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+            } else{
+                unset($string[$k]);
+            }
+        }
+
+        if(!$full) $string = array_slice($string, 0,1);
+        return $string ? implode(', ', $string) . ' ago' : ' just now';
     }
 
     public function wasLikedBy(){

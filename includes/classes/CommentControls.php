@@ -86,7 +86,7 @@ class CommentControls{
         $postButtonAction = "postComment(this, \"$postedBy\", $videoId, $commentId, \"repliesSection\")";
         $postButton = ButtonProvider::createButton("Reply", null, $postButtonAction, "postComment");
 
-        return "<div class='commentForm'>
+        return "<div class='commentForm hidden'>
                     $profileButton
                     <textarea class='commentBodyClass' placeholder='Add a public comment.'></textarea>
                     $cancelButton
