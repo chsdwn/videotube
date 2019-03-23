@@ -13,7 +13,76 @@ a:hover{
 }
 
 /* videoGrid */
+.videoGrid{
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.videoGrid .videoGridItem{
+    display: flex;
+    height: auto;
+}
+
+.videoGrid .videoGridItem{
+    margin-right: 4px;
+    margin-bottom: 24px;
+}
+
+.videoGrid .videoGridItem .thumbnail{
+    width: 210px;
+    height: 118px;
+    position: relative;
+}
+
+.videoGrid .videoGridItem .thumbnail img{
+    width: 100%;
+    height: 100%;
+}
+
+.videoGrid .videoGridItem .thumbnail .duration{
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    margin: 4px;
+    color: #fff;
+    background-color: rgba(17,17,17,0.7);
+    opacity: 0.8;
+    padding: 2px 4px;
+    border-radius: 2px;
+    letter-spacing: 0.5px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 12px;
+}
+
+.videoGrid .videoGridItem .details{
+    padding-right: 24px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    width: 210px;
+}
+
+
+.videoGrid .videoGridItem .details .title{
+    margin: 8px 0;
+    max-height: 32px;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    color: #212529;
+}
+
+.videoGrid .videoGridItem .details .username,
+.videoGrid .videoGridItem .details .stats{
+    color: rgba(17,17,17,0.7);
+    font-size: 13px;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 #pageContainer {
     width: 100%;
@@ -508,82 +577,12 @@ a:hover{
     padding-left: 24px;
 }
 
-.videoGrid{
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.videoGrid .videoGridItem{
-    display: flex;
-    height: auto;
-}
-
-.videoGrid .videoGridItem{
-    margin-right: 4px;
-    margin-bottom: 24px;
-}
-
-.videoGrid .videoGridItem .thumbnail{
-    width: 210px;
-    height: 118px;
-    position: relative;
-}
-
 .suggestions .videoGrid .videoGridItem .thumbnail{
     margin-right: 8px;
 
 }
 
-.videoGrid .videoGridItem .thumbnail img{
-    width: 100%;
-    height: 100%;
-}
-
-.videoGrid .videoGridItem .thumbnail .duration{
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    margin: 4px;
-    color: #fff;
-    background-color: rgba(17,17,17,0.7);
-    opacity: 0.8;
-    padding: 2px 4px;
-    border-radius: 2px;
-    letter-spacing: 0.5px;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 12px;
-}
-
-.videoGrid .videoGridItem .details{
-    padding-right: 24px;
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    width: 210px;
-}
-
 .suggestions .videoGrid .videoGridItem .details{
     padding-right: 0;
     flex: 1;
-}
-
-.videoGrid .videoGridItem .details .title{
-    margin: 8px 0;
-    max-height: 32px;
-    overflow: hidden;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 16px;
-    color: #212529;
-}
-
-.videoGrid .videoGridItem .details .username,
-.videoGrid .videoGridItem .details .stats{
-    color: rgba(17,17,17,0.7);
-    font-size: 13px;
-    overflow-x: hidden;
-    text-overflows: ellipsis;
-    white-space: nowrap;
 }
