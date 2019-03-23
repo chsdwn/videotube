@@ -38,6 +38,23 @@ class User{
         return $query->rowCount();
     }
 
+    public function getSubscriptions(){
+        $username = $this->getUsername();
+
+        $query = $this->con->prepare("SELECT userTo FROM subscribers WHERE userFrom=:userFrom");
+        $query->bindParam(":userFrom", $username);
+        $query->execute();
+
+        $subs = array();
+
+        while($row = $query->fetch(PDO::FETCH_ASSOC)){
+            $user = new User($this->con, $row["userTo"]);
+            array_push($subs, $user);
+        }
+
+        return $subs;
+    }
+
     public function getUsername(){
         return $this->sqlData["username"];
     }

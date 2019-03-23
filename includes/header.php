@@ -1,6 +1,7 @@
 <?php
 require_once("includes/config.php");
 require_once("includes/classes/ButtonProvider.php");
+require_once("includes/classes/SubscriptionsProvider.php");
 require_once("includes/classes/User.php");
 require_once("includes/classes/Video.php");
 require_once("includes/classes/VideoGrid.php");
