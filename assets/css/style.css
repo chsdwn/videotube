@@ -18,6 +18,37 @@ a:hover{
     flex-wrap: wrap;
 }
 
+.videoGrid.large{
+    flex-direction: column;
+    flex: 1;
+}
+
+.videoGrid.large .videoGridItem{
+    height: auto;
+    display: flex;
+}
+
+.videoGrid.large .videoGridItem .thumbnail{
+    width: 266px;
+    height: 138px;
+    margin-right: 16px;
+}
+
+.videoGrid.large .videoGridItem .details{
+    max-width: 600px;
+}
+
+.videoGrid.large .videoGridItem .details .title{
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.videoGrid.large .videoGridItem .details .description{
+    color: rgba(17,17,17,0.7);
+    font-size: 13px;
+    font-weight: 500;
+}
+
 .videoGrid .videoGridItem{
     height: 200px;
     margin-right: 4px;
@@ -77,6 +108,35 @@ a:hover{
     overflow-x: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.largeVideoGridContainer{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.largeVideoGridContainer .videoGridHeader{
+    display: flex;
+    margin: 10px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.largeVideoGridContainer .videoGridHeader a{
+    color: rgba(17,17,17,0.7);
+}
+
+.largeVideoGridContainer .videoGridHeader a:after{
+    content: ' |';
+}
+
+.largeVideoGridContainer .videoGridHeader a:last-child:after{
+    content: '';
+}
+
+.largeVideoGridContainer .videoGridHeader .right{
+    text-align: right;
 }
 
 #pageContainer {

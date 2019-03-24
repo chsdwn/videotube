@@ -28,6 +28,13 @@ class VideoGrid{
                 </div>";
     }
 
+    public function createLarge($videos, $title, $showFilter){
+        $this->gridClass .= " large";
+        $this->largeMode = true;
+
+        return $this->create($videos, $title, $showFilter);
+    }
+
     public function generateItems(){
         $query = $this->con->prepare("SELECT * FROM videos ORDER BY RAND() LIMIT 15");
         $query->execute();
@@ -43,6 +50,36 @@ class VideoGrid{
         return $elementHtml;
     }
 
+    public function createGridHeader($title, $showFilter){
+        $filter = "";
+
+        if($showFilter){
+            $link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            $urlArray = parse_url($link);
+
+            $query = $urlArray["query"];
+
+            parse_str($query, $params);
+            unset($params["orderBy"]);
+
+            $newQuery = http_build_query($params);
+            $newUrl = basename($_SERVER["PHP_SELF"]) . "?" . $newQuery;
+
+            $filter = "<div class='right'>
+                            <span>Order by:</span>
+                            <a href='$newUrl&orderBy=uploadDate'>Upload date</a>
+                            <a href='$newUrl&orderBy=views'>Most viewed</a>
+                        </div>";
+        }
+
+        return "<div class='videoGridHeader'>
+                   <div class='left'>
+                       $title
+                   </div>
+                   $filter
+                </div>";
+    }
+
     public function generateItemsFromVideos($videos){
         $elementsHtml = "";
 
@@ -52,16 +89,5 @@ class VideoGrid{
         }
 
         return $elementsHtml;
-    }
-
-    public function createGridHeader($title, $showFilter){
-        $filter = "";
-
-        return "<div class='videoGridHeader'>
-                   <div class='left'>
-                       $title
-                   </div>
-                   $filter
-                </div>";
     }
 }
