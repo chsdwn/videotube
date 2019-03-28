@@ -509,8 +509,8 @@ a:hover{
     font-weight: 400;
 }
 
-.watchLeftColumn .secondaryInfo .topRow .editVideoButtonContainer,
-.watchLeftColumn .secondaryInfo .topRow .subscribeButtonContainer{
+.editVideoButtonContainer,
+.subscribeButtonContainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -521,18 +521,18 @@ a:hover{
     color: #fff;
 }
 
-.watchLeftColumn .secondaryInfo .topRow .subscribeButtonContainer .subscribe{
+.subscribeButtonContainer .subscribe{
     background-color: #f00;
     color: #fff;
 }
 
-.watchLeftColumn .secondaryInfo .topRow .subscribeButtonContainer .unsubscribe{
+.subscribeButtonContainer .unsubscribe{
     background-color: #eee;
     color: rgba(17,  17, 17, 0.6);
 }
 
-.watchLeftColumn .secondaryInfo .topRow .editVideoButtonContainer .button,
-.watchLeftColumn .secondaryInfo .topRow .subscribeButtonContainer .button{
+.editVideoButtonContainer .button,
+.subscribeButtonContainer .button{
     padding: 6px 15px;
     cursor: pointer;
     font-weight: 500;
@@ -703,4 +703,101 @@ a:hover{
 .suggestions .videoGrid .videoGridItem .details{
     padding-right: 0;
     flex: 1;
+}
+
+/* profile.php */
+.profileContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.profileContainer .coverPhotoContainer{
+    flex: 1;
+    position: relative;
+    text-align: center;
+}
+
+.profileContainer .coverPhotoContainer .coverPhoto{
+    width: 100%;
+    object-fit: cover;
+    max-height: 100%;
+    vertical-align: middle;
+    height: 200px;
+}
+
+.profileContainer .coverPhotoContainer .channelName{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    color: #fff;
+    text-align: center;
+}
+
+.profileContainer .profileHeader{
+    padding: 15px 100px 0 100px;
+    display: flex;
+    height: 100px;
+}
+
+.profileContainer .profileHeader .userInfoContainer {
+    flex: 1;
+    display: flex;
+}
+
+.profileContainer .profileHeader .userInfoContainer .profileImage{
+    height: 80px;
+    width: 80px;
+}
+
+.profileContainer .profileHeader .userInfoContainer .userInfo{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profileContainer .profileHeader .userInfoContainer .userInfo .title{
+    font-size: 24px;
+    font-weight: 400;
+    color: #111;
+}
+
+.profileContainer .profileHeader .userInfoContainer .userInfo .subscriberCount{
+    font-size: 14px;
+    color: rgba(17,17,17,0.7);
+}
+
+.profileContainer .profileHeader .buttonContainer{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.profileContainer .profileHeader .buttonContainer .buttonItem{
+    align-items: center;
+    display: flex;
+}
+
+.profileContainer .profileHeader .buttonContainer .buttonItem button{
+    padding: 10px 15px;
+}
+
+.nav-item a{
+    color: rgba(17,17,17,0.7);
+}
+
+.profileContainer .channelContent{
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+}
+
+#about .section .values{
+    color: rgba(17,17,17,0.7);
+    display: flex;
+    flex-direction: column;
 }
