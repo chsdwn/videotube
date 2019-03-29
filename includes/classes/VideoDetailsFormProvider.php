@@ -84,4 +84,3 @@ class VideoDetailsFormProvider{
         return "<button type='submit' class='btn btn-primary' name='uploadBtn'>Upload</button>";
     }
 }
-?>

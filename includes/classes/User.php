@@ -71,7 +71,7 @@ class User{
         return $this->sqlData["lastName"];
     }
 
-    public function getEmailName(){
+    public function getEmail(){
         return $this->sqlData["email"];
     }
 

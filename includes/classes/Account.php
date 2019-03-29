@@ -37,6 +37,42 @@ class Account{
         }
     }
 
+    public function updateDetails($firstName, $lastName, $email, $username){
+        $this->validateFirstName($firstName);
+        $this->validateLastName($lastName);
+        $this->validateNewEmail($email, $username);
+
+        if(empty($this->errorArray)){
+            $query = $this->con->prepare("UPDATE users SET firstName=:firstName, lastName=:lastName, email=:email "
+                . "WHERE username=:username");
+            $query->bindParam(":firstName", $firstName);
+            $query->bindParam(":lastName", $lastName);
+            $query->bindParam(":email", $email);
+            $query->bindParam(":username", $username);
+
+            return $query->execute();
+        } else{
+            return false;
+        }
+    }
+
+    public function updatePassword($oldPassword, $newPassword, $newPassword2, $username){
+        $this->validateOldPassword($oldPassword, $username);
+        $this->validatePasswords($newPassword, $newPassword2);
+
+        if(empty($this->errorArray)){
+            $password = hash('sha512', $newPassword);
+
+            $query = $this->con->prepare("UPDATE users SET password=:password WHERE username=:username");
+            $query->bindParam(":password", $password);
+            $query->bindParam(":username", $username);
+
+            return $query->execute();
+        } else{
+            return false;
+        }
+    }
+
     public function insertUserDetails($firstName, $lastName, $username, $email, $password){
         $password = hash('sha512', $password);
         $profilePic = "assets/images/profilePictures/default.png";
@@ -56,6 +92,14 @@ class Account{
     public function getError($error){
         if(in_array($error, $this->errorArray)){
             return "<div class='errorMessage'>$error</div>";
+        }
+    }
+
+    public function getFirstError(){
+        if(!empty($this->errorArray)){
+            return $this->errorArray[0];
+        } else {
+            return "";
         }
     }
 
@@ -103,6 +147,35 @@ class Account{
 
         if($query->rowCount() != 0){
             array_push($this->errorArray, Constants::$emailTaken);
+        }
+    }
+
+    private function validateNewEmail($email, $username){
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            array_push($this->errorArray, Constants::$emailInvalid);
+            return;
+        }
+
+        $query = $this->con->prepare("SELECT email FROM users WHERE email=:email AND username=:username");
+        $query->bindParam(":email", $email);
+        $query->bindParam(":username", $username);
+        $query->execute();
+
+        if($query->rowCount() != 0){
+            array_push($this->errorArray, Constants::$emailTaken);
+        }
+    }
+
+    private function validateOldPassword($password, $username){
+        $password = hash("sha512", $password);
+
+        $query = $this->con->prepare("SELECT * FROM users WHERE username=:username AND password=:password");
+        $query->bindParam(":username", $username);
+        $query->bindParam(":password", $password);
+        $query->execute();
+
+        if($query->rowCount() == 0){
+            array_push($this->errorArray, Constants::$passwordIncorrect);
         }
     }
 
